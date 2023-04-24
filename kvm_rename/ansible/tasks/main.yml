@@ -1,0 +1,5 @@
+---
+- import_tasks: prod.yml
+  when: LCE == "prod"
+- import_tasks: dev.yml
+  when: LCE == "dev"

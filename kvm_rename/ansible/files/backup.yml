@@ -1,0 +1,8 @@
+---
+- shell: head -n1 backup/backupip.txt
+  register: ip 
+- lineinfile:
+   path: backup/backup.csv
+   regexp: '^{{ ip.stdout }}'
+   line: '{{ip.stdout}},free'
+- shell: 'echo "$(tail -n +2 backup/backupip.txt)" > backup/backupip.txt' 

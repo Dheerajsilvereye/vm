@@ -1,0 +1,30 @@
+---
+- name: set facts for data disk
+  set_fact:
+    data_disk_name: "{{ kvm_vm_hostname }}.{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
+- name: Check if operating system disk already exists
+  stat:
+    path: /var/lib/libvirt/images/{{ data_disk_name }}.qcow2
+    get_checksum: no
+    get_md5: no
+    get_mime: no
+    get_attributes: no
+  register: data_disk_file
+
+- name: fail if operating system disk already exists
+  fail:
+    msg: "An operating system disk already exists at /var/lib/libvirt/images/{{ data_disk_name }}.qcow2"
+  when: data_disk_file.stat.exists
+
+- name: create another disk
+  shell: qemu-img create -f qcow2 /var/lib/libvirt/images/{{ data_disk_name }}.qcow2 {{ data_disk_size}}
+  register: data_disk
+  changed_when: '"Formatting" in data_disk.stdout'
+- name: pre-allocate disk
+  shell: dd if=/dev/zero of=/var/lib/libvirt/images/{{ data_disk_name }}.qcow2 bs=1G count={{ data_disk_size }}
+  register: preallocate_disk
+- debug: var=preallocate_disk
+- name: attach disk
+  shell: virsh attach-disk {{ kvm_vm_hostname }} --source /var/lib/libvirt/images/{{ data_disk_name }}.qcow2 --target vdb --persistent 
+  register: disk_attached
+- debug: var=disk_attached.stdout

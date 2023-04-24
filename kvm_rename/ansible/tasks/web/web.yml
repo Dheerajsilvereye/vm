@@ -1,0 +1,8 @@
+---
+- shell: head -n1 /var/lib/awx/projects/tata/kvm/ansible/tasks/web/webip.txt
+  register: ip 
+- lineinfile:
+   path: /var/lib/awx/projects/tata/kvm/ansible/tasks/web/web.csv
+   regexp: '^{{ ip.stdout }}'
+   line: '{{ip.stdout}},Allocated'
+- shell: 'echo "$(tail -n +2 /var/lib/awx/projects/tata/kvm/ansible/tasks//web/webip.txt)" > /var/lib/awx/projects/tata/kvm/ansible/tasks/web/webip.txt' 

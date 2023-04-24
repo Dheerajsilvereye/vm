@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+    - shell: head -n1 /home/admin/plays/25/csv/ip.txt
+      register: ip 
+    - lineinfile:
+       path: /home/admin/plays/25/csv/abc.csv
+       regexp: '^{{ ip.stdout }}'
+       line: '{{ip.stdout}},free'
+    - shell: 'echo "$(tail -n +2 /home/admin/plays/25/csv/ip.txt)" > /home/admin/plays/25/csv/ip.txt' 
