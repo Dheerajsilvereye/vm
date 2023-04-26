@@ -1,4 +1,5 @@
 ---
+- shell: pwd
 #- shell: cat https://github.com/Dheerajsilvereye/vm/blob/main/kvm_latest/ansible/tasks/backup/backup.txt
 - shell: head -n1 https://github.com/Dheerajsilvereye/vm/blob/main/kvm_latest/ansible/tasks/backup/backupip.txt
   register: ip 
