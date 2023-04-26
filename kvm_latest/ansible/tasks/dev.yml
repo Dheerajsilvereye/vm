@@ -1,6 +1,6 @@
 ---
-- import_tasks: ansible/tasks/backup/GI_GIBOT.yml
-  when: project == "backup/GI_GIBOT.csv"
+- import_tasks: ansible/tasks/backup/GIS_GIBOT.yml
+  when: project == "backup/GIS_GIBOT.csv"
 - import_tasks: ansible/tasks/backup/HES_MDMS_SPM.yml 
   when: project == "backup/HES_MDMS_SPM.csv"
 - import_tasks: ansible/tasks/backup/AMR.yml 
