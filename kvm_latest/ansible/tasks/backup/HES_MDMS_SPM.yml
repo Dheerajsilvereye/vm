@@ -1,0 +1,7 @@
+- shell: head -n1 /dir/HES_MDMS_SPM.txt
+  register: ip
+- lineinfile:
+   path: /dir/HES_MDMS_SPM.csv
+   regexp: '^{{ ip.stdout }}'
+   line: '{{ip.stdout}},alloted'
+- shell: 'echo "$(tail -n +2 /dir/HES_MDMS_SPM.txt)" > /dir/HES_MDMS_SPM.txt'

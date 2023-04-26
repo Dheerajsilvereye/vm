@@ -2,7 +2,6 @@
   tags: provision
   vars:
     kvm_vm_hostname: "vm2.example.com"
-    kvm_vm_public_ip: 192.168.1.22
     kvm_vm_root_pwd: "s"
     kvm_vm_base_img: rhel-8.7-x86_64-kvm.qcow2 
     kvm_vm_vcpus: "1"
@@ -11,6 +10,7 @@
     kvm_vm_os_disk_size: "20G"
     LCE: dev
     env: web
+    project: GIS
     addition_disk: no
     network_bridge: bridge219
     kvm_vm_nics:

@@ -1,14 +1,44 @@
 ---
-- shell: pwd
-  register: aq
-- debug:
-   msg: hello {{ aq }}
-- shell: cat ansible/tasks/backup/backup.txt
-- shell: head -n1 https://github.com/Dheerajsilvereye/vm/blob/main/kvm_latest/ansible/tasks/backup/backupip.txt
+- shell: head -n1 /dir/GIS_GIBOT.txt
+  when: project == "GIS" or project == "GIBOT"
   register: ip
 - lineinfile:
-   path: https://github.com/Dheerajsilvereye/vm/blob/main/kvm_rename/ansible/tasks/backup/backup.csv
+   path: /dir/GIS_GIBOT.csv
    regexp: '^{{ ip.stdout }}'
-   line: '{{ip.stdout}},free'
-- shell: 'echo "$(tail -n +2 https://github.com/Dheerajsilvereye/vm/blob/main/kvm_rename/ansible/tasks/backup/backupip.txt)" > https://github.com/Dheerajsilvereye/vm/blob/main/kvm_rename/ansible/tasks/backup/backupip.txt'
-~                                                                                                                  
+   line: '{{ip.stdout}},alloted'
+  when: project == "GIS" or project == "GIBOT"
+- shell: 'echo "$(tail -n +2 /dir/GIS_GIBOT.txt)" > /dir/GIS_GIBOT.txt'
+  when: project == "GIS" or project == "GIBOT"
+
+- shell: head -n1 /dir/HES_MDMS_SPM.txt
+  when: project == "HES" or project == "MDMS" or project == "SPM"
+  register: ip
+- lineinfile:
+   path: /dir/HES_MDMS_SPM.csv
+   regexp: '^{{ ip.stdout }}'
+   line: '{{ip.stdout}},alloted'
+  when: project == "HES" or project == "MDMS" or project == "SPM"
+- shell: 'echo "$(tail -n +2 /dir/HES_MDMS_SPM.txt)" > /dir/HES_MDMS_SPM.txt'
+  when: project == "HES" or project == "MDMS" or project == "SPM"
+
+- shell: head -n1 /dir/AMR.txt
+  when: project == "AMR"
+  register: ip
+- lineinfile:
+   path: /dir/AMR.csv
+   regexp: '^{{ ip.stdout }}'
+   line: '{{ip.stdout}},alloted'
+  when: project == "AMR"
+- shell: 'echo "$(tail -n +2 /dir/AMR.txt)" > /dir/AMR.txt'
+  when: project == "AMR"
+
+- shell: head -n1 /dir/IT.txt
+  when: project == "IT"
+  register: ip
+- lineinfile:                                           
+   path: /dir/IT.csv
+   regexp: '^{{ ip.stdout }}'                                            
+   line: '{{ip.stdout}},alloted'
+  when: project == "IT"
+- shell: 'echo "$(tail -n +2 /dir/IT.txt)" > /dir/IT.txt'
+  when: project == "IT"                                                 

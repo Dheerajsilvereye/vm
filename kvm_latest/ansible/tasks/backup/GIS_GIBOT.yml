@@ -1,0 +1,7 @@
+- shell: head -n1 /dir/GIS_GIBOT.txt
+  register: ip
+- lineinfile:
+   path: /dir/GIS_GIBOT.csv
+   regexp: '^{{ ip.stdout }}'
+   line: '{{ip.stdout}},alloted'
+- shell: 'echo "$(tail -n +2 /dir/GIS_GIBOT.txt)" > /dir/GIS_GIBOT.txt'

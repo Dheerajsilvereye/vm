@@ -1,0 +1,7 @@
+- shell: head -n1 /dir/IT.txt
+  register: ip
+- lineinfile:                                           
+   path: /dir/IT.csv
+   regexp: '^{{ ip.stdout }}'                                            
+   line: '{{ip.stdout}},alloted'
+- shell: 'echo "$(tail -n +2 /dir/IT.txt)" > /dir/IT.txt'
