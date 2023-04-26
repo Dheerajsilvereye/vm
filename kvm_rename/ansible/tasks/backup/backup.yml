@@ -1,9 +1,9 @@
 ---
-- shell: cat ansible/tasks/backup/backupip.txt
-- shell: head -n1 /var/lib/awx/projects/tata/kvm/ansible/tasks/backup/backupip.txt
+- shell: cat https://github.com/Dheerajsilvereye/kvm/blob/main/kvm_rename/ansible/tasks/backup/backupip.txt
+- shell: head -n1 https://github.com/Dheerajsilvereye/kvm/blob/main/kvm_rename/ansible/tasks/backup/backupip.txt
   register: ip 
 - lineinfile:
-   path: /var/lib/awx/projects/tata/kvm/ansible/tasks/backup/backup.csv
+   path: https://github.com/Dheerajsilvereye/kvm/blob/main/kvm_rename/ansible/tasks/backup/backup.csv
    regexp: '^{{ ip.stdout }}'
    line: '{{ip.stdout}},free'
-- shell: 'echo "$(tail -n +2 /var/lib/awx/projects/tata/kvm/ansible/tasks/backup/backupip.txt)" > /var/lib/awx/projects/tata/kvm/ansible/tasks/backup/backupip.txt' 
+- shell: 'echo "$(tail -n +2 https://github.com/Dheerajsilvereye/kvm/blob/main/kvm_rename/ansible/tasks/backup/backupip.txt)" > https://github.com/Dheerajsilvereye/kvm/blob/main/kvm_rename/ansible/tasks/backup/backupip.txt' 
