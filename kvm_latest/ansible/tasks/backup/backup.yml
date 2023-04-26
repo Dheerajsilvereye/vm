@@ -1,8 +1,12 @@
 ---
 - shell: pwd
   register: aq
+<<<<<<< HEAD
 - debug:
    msg: hello {{ aq }}
+=======
+- debug: var=aq
+>>>>>>> 96c5c366a40f2a7aa3e495c3a834331b7bbe95af
 - shell: cat ansible/tasks/backup/backup.txt
 - shell: head -n1 https://github.com/Dheerajsilvereye/vm/blob/main/kvm_latest/ansible/tasks/backup/backupip.txt
   register: ip 
