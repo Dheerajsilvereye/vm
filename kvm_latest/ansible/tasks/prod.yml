@@ -1,11 +1,11 @@
 ---
-- import_tasks: backup/GI_GIBOT.yml
+- import_tasks: ansible/tasks/backup/GI_GIBOT.yml
   when: project == "backup/GI_GIBOT.csv"
-- import_tasks: backup/HES_MDMS_SPM.yml
+- import_tasks: ansible/tasks/backup/HES_MDMS_SPM.yml
   when: project == "backup/HES_MDMS_SPM.csv"
-- import_tasks: backup/AMR.yml
+- import_tasks: ansible/tasks/backup/AMR.yml
   when: project == "backup/AMR.csv"
-- import_tasks: backup/IT.yml
+- import_tasks: ansible/tasks/backup/IT.yml
   when: project == "backup/IT.csv"
 
 - import_tasks: web/web.yml
